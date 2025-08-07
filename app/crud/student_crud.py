@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from app import models, schemas
 from datetime import datetime
-from app.schemas import student as student_schema
+from app.schemas import student_schema as student_schema
 
 
 def create_student(db: Session, student: student_schema.StudentCreate):

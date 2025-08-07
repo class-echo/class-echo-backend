@@ -7,7 +7,7 @@ class Student(Base):
     __tablename__ = "students"
 
     reg_no = Column(Integer, primary_key=True, index=True)
-    school_id = Column(Integer, ForeignKey("schools.school_id", ondelete="CASCADE"))
+    school_id = Column(Integer, ForeignKey("schools.school_id", ondelete="CASCADE"), nullable=False)
     f_name = Column(String, nullable=False)
     l_name = Column(String, nullable=False)
     address = Column(String)
@@ -21,6 +21,6 @@ class StudentClass(Base):
     __tablename__ = "student_class"
 
     sc_id = Column(Integer, primary_key=True, index=True)
-    school_id = Column(Integer, ForeignKey("schools.school_id", ondelete="CASCADE"))
-    reg_no = Column(Integer, ForeignKey("students.reg_no", ondelete="CASCADE"))
-    class_section_id = Column(Integer, ForeignKey("class_sections.class_section_id", ondelete="CASCADE"))
+    school_id = Column(Integer, ForeignKey("schools.school_id", ondelete="CASCADE"), nullable=False)
+    reg_no = Column(Integer, ForeignKey("students.reg_no", ondelete="CASCADE"), nullable=False)
+    class_section_id = Column(Integer, ForeignKey("class_sections.class_section_id", ondelete="CASCADE"), nullable=False)

@@ -6,14 +6,14 @@ class Class(Base):
 
     class_id = Column(Integer, primary_key=True, index=True)
     school_id = Column(Integer, ForeignKey("schools.school_id", ondelete="CASCADE"))
-    class_name = Column(String)
+    class_name = Column(String, nullable= False)
 
 class Section(Base):
     __tablename__ = "sections"
 
     section_id = Column(Integer, primary_key=True, index=True)
     school_id = Column(Integer, ForeignKey("schools.school_id", ondelete="CASCADE"))
-    section_name = Column(String)
+    section_name = Column(String, nullable=False)
 
 class ClassSection(Base):
     __tablename__ = "class_sections"

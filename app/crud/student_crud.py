@@ -5,15 +5,7 @@ from app.schemas import student_schema as student_schema
 
 
 def create_student(db: Session, student: student_schema.StudentCreate):
-    db_student = models.Student(
-        school_id=student.school_id,
-        f_name=student.f_name,
-        l_name=student.l_name,
-        address=student.address,
-        admit_date=student.admit_date,
-        leave_date=student.leave_date,
-        created_at=datetime.utcnow()
-    )
+    db_student = models.Student(**student.model_dump())
     db.add(db_student)
     db.commit()
     db.refresh(db_student)

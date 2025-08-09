@@ -17,7 +17,7 @@ def get_student(db: Session, reg_no: int):
 def get_students(db: Session, skip: int = 0, limit: int = 10):
     return db.query(models.Student).offset(skip).limit(limit).all()
 
-def update_student(db: Session, reg_no: int, student_update: student_schema.StudentUpdate):
+def update_student(db: Session, reg_no: int, student_update: student_schema.StudentCreate):
     student = db.query(models.Student).filter(models.Student.reg_no == reg_no).first()
     if not student:
         return None
@@ -28,7 +28,7 @@ def update_student(db: Session, reg_no: int, student_update: student_schema.Stud
     return student
 
 def delete_student(db: Session, reg_no: int):
-    student = db.query(models.Student).filter(models.Student.reg_no == reg_no).first()
+    student = get_student(db, reg_no)
     if student:
         db.delete(student)
         db.commit()

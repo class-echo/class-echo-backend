@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, func
 from app.database import Base
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.expression import text # For server default timestamp
@@ -20,7 +20,7 @@ class Student(Base):
 class StudentClass(Base):
     __tablename__ = "student_class"
 
-    sc_id = Column(Integer, primary_key=True, index=True)
+    student_class_id = Column(Integer, primary_key=True, index=True)
     school_id = Column(Integer, ForeignKey("schools.school_id", ondelete="CASCADE"), nullable=False)
     reg_no = Column(Integer, ForeignKey("students.reg_no", ondelete="CASCADE"), nullable=False)
     class_section_id = Column(Integer, ForeignKey("class_sections.class_section_id", ondelete="CASCADE"), nullable=False)

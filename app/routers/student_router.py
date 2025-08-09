@@ -22,7 +22,7 @@ def read_all(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     return student_crud.get_students(db, skip, limit)
 
 @router.put("/{reg_no}", response_model=student_schema.StudentOut)
-def update(reg_no: int, update_data: student_schema.StudentUpdate, db: Session = Depends(get_db)):
+def update(reg_no: int, update_data: student_schema.StudentCreate, db: Session = Depends(get_db)):
     student = student_crud.update_student(db, reg_no, update_data)
     if not student:
         raise HTTPException(status_code=404, detail="Student not found")

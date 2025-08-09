@@ -3,6 +3,7 @@ from typing import Optional
 from datetime import datetime
 
 class StudentBase(BaseModel):
+    school_id: int
     f_name: str 
     l_name: str
     address: Optional[str] = None
@@ -10,10 +11,8 @@ class StudentBase(BaseModel):
     leave_date: Optional[datetime] = None
 
 class StudentCreate(StudentBase):
-    school_id: int
-
-class StudentUpdate(StudentBase):
     pass
+
 
 class StudentOut(StudentBase):
     reg_no: int

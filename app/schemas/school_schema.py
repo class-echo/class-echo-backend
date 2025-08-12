@@ -9,4 +9,4 @@ class SchoolCreate(SchoolBase):
 class SchoolOut(SchoolBase):
     school_id: int
 
-    model_config = {"from_attributes": True} 
+    model_config = {"from_attributes": True}  

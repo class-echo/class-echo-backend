@@ -11,7 +11,7 @@ class Parent(Base):
     first_name = Column(String, nullable=False)
     last_name = Column(String, nullable=False)
     phone = Column(String, nullable=False)
-    email = Column(String, nullable=False)
+    email = Column(String, nullable=False, unique=True)
     address = Column(String, nullable=False)
     created_at = Column(DateTime, nullable=False, server_default=func.now())
 
@@ -21,6 +21,7 @@ class StudentParent(Base):
     __tablename__ = "student_parent"
 
     student_parent_id = Column(Integer, primary_key=True, index=True)
+    school_id = Column(Integer, ForeignKey("schools.school_id", ondelete="RESTRICT", onupdate="CASCADE"), nullable=False)
     reg_no = Column(Integer, ForeignKey("students.reg_no", ondelete="RESTRICT", onupdate="CASCADE"), nullable=False)
     parent_id = Column(Integer, ForeignKey("parents.parent_id", ondelete="RESTRICT", onupdate="CASCADE"), nullable=False)
     relationship = Column(String)

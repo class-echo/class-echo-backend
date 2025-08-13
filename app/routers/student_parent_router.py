@@ -4,7 +4,7 @@ from app.schemas import student_parent_schema
 from app.crud import student_parent_crud
 from app.database import get_db
 
-router = APIRouter(prefix="/student-parents", tags=["Student-Parents-Mapping"])
+router = APIRouter(prefix="/student-parents", tags=["Student-Parents Mapping"])
 
 @router.post("/", response_model=student_parent_schema.StudentParentOut)
 def create_mapping(mapping: student_parent_schema.StudentParentCreate, db: Session = Depends(get_db)):

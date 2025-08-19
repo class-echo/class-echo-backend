@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, func
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, func, UniqueConstraint
 from app.database import Base
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.expression import text # For server default timestamp
@@ -24,3 +24,7 @@ class StudentClass(Base):
     school_id = Column(Integer, ForeignKey("schools.school_id", ondelete="RESTRICT", onupdate="CASCADE"), nullable=False)
     reg_no = Column(Integer, ForeignKey("students.reg_no", ondelete="RESTRICT", onupdate="CASCADE"), nullable=False)
     class_section_id = Column(Integer, ForeignKey("class_sections.class_section_id", ondelete="RESTRICT", onupdate="CASCADE"), nullable=False)
+
+    __table_args__ = (
+        UniqueConstraint('school_id', 'reg_no', 'class_section_id', name='unique_student_class'),
+    )

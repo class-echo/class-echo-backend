@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, func
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, func, UniqueConstraint
 from sqlalchemy.sql import text
 from app.database import Base
 
@@ -18,3 +18,7 @@ class TeacherClassSubject(Base):
     teacher_id = Column(Integer, ForeignKey("teachers.teacher_id", ondelete="RESTRICT", onupdate="CASCADE"), nullable=False)
     class_section_id = Column(Integer, ForeignKey("class_sections.class_section_id", ondelete="RESTRICT", onupdate="CASCADE"), nullable=False)
     subject_id = Column(Integer, ForeignKey("subjects.subject_id", ondelete="RESTRICT", onupdate="CASCADE"), nullable=False)
+
+    __table_args__ = (
+        UniqueConstraint('school_id', 'teacher_id', 'class_section_id', 'subject_id', name='unique_teacher_class_subject'),
+    )

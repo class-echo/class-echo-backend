@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from typing import Optional
 from datetime import datetime
 
@@ -6,6 +6,7 @@ class StudentBase(BaseModel):
     school_id: int
     f_name: str 
     l_name: str
+    email: EmailStr
     address: Optional[str] = None
     admit_date: Optional[datetime] = None
     leave_date: Optional[datetime] = None

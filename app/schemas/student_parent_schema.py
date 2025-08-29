@@ -5,7 +5,7 @@ class StudentParentBase(BaseModel):
     school_id: int
     reg_no: int
     parent_id: int
-    relationship: Optional[str] = None
+    relation: Optional[str] = None
 
 class StudentParentCreate(StudentParentBase):
     pass

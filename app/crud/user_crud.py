@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from app import models
 from app.schemas.user_schema import UserCreate
-from app.utils import hash_password  # we’ll create utils for hashing
+from app.core.utils import hash_password  
 
 
 def create_user(db: Session, user: UserCreate):

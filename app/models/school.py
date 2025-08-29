@@ -12,3 +12,6 @@ class School(Base):
     address = Column(String)
 
     users = relationship("User", back_populates="school", passive_deletes=True)
+    students = relationship("Student", back_populates="school", passive_deletes=True)
+    teachers = relationship("Teacher", back_populates="school", passive_deletes=True)
+    parents = relationship("Parent", back_populates="school", passive_deletes=True)

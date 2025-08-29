@@ -1,6 +1,5 @@
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, func
 from sqlalchemy.orm import relationship
-from sqlalchemy.sql import text
 from app.database import Base
 
 class Parent(Base):
@@ -15,7 +14,10 @@ class Parent(Base):
     address = Column(String, nullable=False)
     created_at = Column(DateTime, nullable=False, server_default=func.now())
 
-    school = relationship("School", passive_deletes=True)
+    # relationships
+    school = relationship("School", back_populates="parents", passive_deletes=True)
+    students = relationship("StudentParent", back_populates="parent", cascade="all, delete")
+
 
 class StudentParent(Base):
     __tablename__ = "student_parent"
@@ -24,4 +26,8 @@ class StudentParent(Base):
     school_id = Column(Integer, ForeignKey("schools.school_id", ondelete="RESTRICT", onupdate="CASCADE"), nullable=False)
     reg_no = Column(Integer, ForeignKey("students.reg_no", ondelete="RESTRICT", onupdate="CASCADE"), nullable=False)
     parent_id = Column(Integer, ForeignKey("parents.parent_id", ondelete="RESTRICT", onupdate="CASCADE"), nullable=False)
-    relationship = Column(String)
+    relation = Column(String)
+
+    # relationships
+    student = relationship("Student", back_populates="parents")
+    parent = relationship("Parent", back_populates="students")

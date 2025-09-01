@@ -20,6 +20,9 @@ class User(Base):
     password = Column(String, nullable=True)  # will be null if using Google login only
     role = Column(Enum(UserRole), nullable=False)
     school_id = Column(Integer, ForeignKey("schools.school_id", ondelete="CASCADE"), nullable=True)
+    oauth_provider = Column(String, nullable=True)   # "google", "local", etc."
+    oauth_sub = Column(String, nullable=True, unique=True)  # Google user ID
+
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     # relation to school

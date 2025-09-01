@@ -18,11 +18,13 @@ class UserBase(BaseModel):
 
 
 class UserCreate(UserBase):
-    password: str  # plain password, will be hashed
+    password: Optional[str] = None  # make optional for Google signup
 
 
 class UserResponse(UserBase):
     user_id: int
+    oauth_provider: Optional[str] = None   
+    oauth_sub: Optional[str] = None        
 
     model_config = {"from_attributes": True}
 
@@ -30,3 +32,8 @@ class UserResponse(UserBase):
 class LoginRequest(BaseModel):
     email: str
     password: str
+
+
+class GoogleSignupRequest(BaseModel):
+    id_token_str: str
+    role: UserRole
